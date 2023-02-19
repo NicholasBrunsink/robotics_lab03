@@ -15,10 +15,12 @@ def kinematic_chain(dhParams):
         [0,0,1,0],
         [0,0,0,1]]
     )
+
     for joint in range(len(dhParams)):
-        TMatrix = np.matmul(TMatrix, dh_transformation(dhParams[joint][0], dhParams[joint][1], 
-                                                dhParams[joint][2], dhParams[joint][3]))
-    
+        TMatrix = np.matmul(TMatrix, dh_transformation(dhParams[joint][0],
+                                                        dhParams[joint][1], 
+                                                        dhParams[joint][2], 
+                                                        dhParams[joint][3]))
     return TMatrix
 
 def get_pos(H):
@@ -26,9 +28,7 @@ def get_pos(H):
 
 def get_rot(H):
     roll = m.atan2(H[2][1], H[2][2])
-    pitch = m.atan2(-H[2][0],
-                     m.sqrt(H[2][1]**2 + H[2][2]**2)        
-        )
+    pitch = m.atan2(-H[2][0], m.sqrt(H[2][1]**2 + H[2][2]**2))
     yaw = m.atan2(H[1][0], H[0][0])
 
     return np.array([roll, pitch, yaw])
