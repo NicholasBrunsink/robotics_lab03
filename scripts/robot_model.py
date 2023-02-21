@@ -1,3 +1,4 @@
+# Import math and numpy for matrix and math operations
 import math as m
 import numpy as np
 
